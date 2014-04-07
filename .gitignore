@@ -1,0 +1,9 @@
+.DS_Store
+lib-cov
+coverage
+*.swp
+
+npm-debug.log
+node_modules
+dist
+assets/components

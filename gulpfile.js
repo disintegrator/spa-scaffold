@@ -9,6 +9,8 @@ var gulp = require('gulp');
 var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var less = require('gulp-less');
+var minifyCSS = require('gulp-minify-css');
+var rename = require('gulp-rename');
 var stylish = require('jshint-stylish');
 
 var makeDeviceBundler = require('./build/scripts').makeDeviceBundler;
@@ -31,6 +33,9 @@ gulp.task('styles', function() {
 
     return gulp.src(src)
         .pipe(less({paths: [bowerDirectory]}))
+        .pipe(gulp.dest(dest))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(minifyCSS())
         .pipe(gulp.dest(dest));
 });
 
@@ -38,7 +43,8 @@ gulp.task('jshint', function() {
     var src = 'assets/scripts/**/*.js';
     return gulp.src(src)
         .pipe(jshint())
-        .pipe(jshint.reporter(stylish));
+        .pipe(jshint.reporter(stylish))
+        .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('scripts', ['jshint'], function() {

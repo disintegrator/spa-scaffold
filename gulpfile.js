@@ -50,5 +50,7 @@ gulp.task('clean', function() {
         .pipe(clean());
 });
 
-gulp.task('default', ['clean', 'styles', 'scripts', 'images']);
+gulp.task('default', ['clean'], function() {
+    gulp.start('styles', 'scripts', 'images');
+});
 

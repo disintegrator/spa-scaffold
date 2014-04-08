@@ -42,7 +42,7 @@ gulp.task('watch', function() {
     gulp.watch('assets/images/**/*', ['images']);
     gulp.watch('assets/styles/**/*', ['styles']);
 
-    es.merge.apply(null, ['desktop', 'tablet', 'mobile'].map(bundleForDevice));
+    return es.merge.apply(null, ['desktop', 'tablet', 'mobile'].map(bundleForDevice));
 });
 
 gulp.task('clean', function() {

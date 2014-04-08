@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 var changed = require('gulp-changed');
 var clean = require('gulp-clean');
 var es = require('event-stream');
@@ -6,6 +8,8 @@ var imagemin = require('gulp-imagemin');
 var less = require('gulp-less');
 
 var makeDeviceBundler = require('./build/scripts').makeDeviceBundler;
+
+var bowerDirectory = JSON.parse(fs.readFileSync('./.bowerrc')).directory;
 
 gulp.task('images', function() {
     var src = 'assets/images/**/*';
@@ -22,7 +26,7 @@ gulp.task('styles', function() {
     var dest = 'dist/assets/styles';
 
     return gulp.src(src)
-        .pipe(less())
+        .pipe(less({paths: [bowerDirectory]}))
         .pipe(gulp.dest(dest));
 });
 

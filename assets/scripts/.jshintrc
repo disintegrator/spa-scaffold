@@ -1,6 +1,5 @@
 {
-    "browser": false,
-    "node": true,
+    "browser": true,
     "esnext": true,
     "bitwise": true,
     "camelcase": true,
@@ -14,8 +13,12 @@
     "quotmark": "single",
     "undef": true,
     "unused": true,
+    "globalstrict": true,
     "strict": true,
     "trailing": true,
-    "smarttabs": false
+    "smarttabs": false,
+    "globals": {
+        "require": false
+    }
 }
 
